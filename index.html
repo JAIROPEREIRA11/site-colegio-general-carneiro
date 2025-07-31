@@ -19,9 +19,30 @@
             margin: 10px 0; /* Espaçamento externo */
             border-radius: 5px; /* Cantos arredondados */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve */
+            display: flex; /* Para alinhar recado e botão */
+            justify-content: space-between; /* Recado à esquerda, botão à direita */
+            align-items: center; /* Centraliza verticalmente */
+        }
+        #lista-recados button {
+            background-color: #dc3545; /* Vermelho para remoção */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
         }
         #form-recados input { padding: 8px; font-size: 16px; width: 300px; }
         #form-recados button { padding: 8px 15px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+
+        /* Media queries para responsividade em móviles */
+        @media (max-width: 600px) {
+            .botoes { display: flex; flex-direction: column; } /* Botões em coluna */
+            img { width: 100%; height: auto; } /* Imagens responsivas */
+            #form-recados input { width: 100%; } /* Input full width */
+            #lista-recados li { flex-direction: column; align-items: flex-start; } /* Recados em coluna no móvil */
+            #lista-recados button { margin-top: 10px; align-self: flex-end; } /* Botão remover abaixo */
+        }
     </style>
 </head>
 <body>
@@ -30,9 +51,9 @@
         <h1>Colégio Estadual General Carneiro - EFMP</h1>
     </header>
     <div class="botoes">
-        <a href="https://rco.seduc.mt.gov.br/" class="botao" target="_blank">Acessar RC Online</a>
-        <a href="https://ponto.seduc.mt.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
-        <a href="https://contracheque.mt.gov.br/" class="botao" target="_blank">Contracheque</a>
+        <a href="https://rco.paas.pr.gov.br/" " class="botao" target="_blank">Acessar RC Online</a>
+        <a href="https://www.registropontoseed.pr.gov.br/" " class="botao" target="_blank">Ponto Eletrônico</a>
+        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" " class="botao" target="_blank">Contracheque</a>
     </div>
     <section>
         <h2>Horários</h2>
@@ -49,16 +70,46 @@
         </ul>
     </section>
     <script>
+        const listaRecados = document.getElementById("lista-recados");
+
+        // Função para carregar recados do localStorage
+        function carregarRecados() {
+            const recadosSalvos = JSON.parse(localStorage.getItem("recados")) || [];
+            recadosSalvos.forEach(recado => adicionarRecadoNaLista(recado));
+        }
+
+        // Função para salvar recados no localStorage
+        function salvarRecados() {
+            const recados = Array.from(listaRecados.children).map(li => li.firstChild.textContent.trim());
+            localStorage.setItem("recados", JSON.stringify(recados));
+        }
+
+        // Função para adicionar recado na lista
+        function adicionarRecadoNaLista(recado) {
+            const li = document.createElement("li");
+            li.innerHTML = `${recado} <button onclick="removerRecado(this)">Remover</button>`;
+            listaRecados.appendChild(li);
+        }
+
+        // Função para remover recado
+        function removerRecado(botao) {
+            botao.parentElement.remove();
+            salvarRecados();
+        }
+
+        // Evento de submit do form
         document.getElementById("form-recados").addEventListener("submit", function(event) {
             event.preventDefault();
             const recado = document.getElementById("novo-recado").value;
             if (recado) {
-                const li = document.createElement("li");
-                li.textContent = recado;
-                document.getElementById("lista-recados").appendChild(li);
+                adicionarRecadoNaLista(recado);
+                salvarRecados();
                 document.getElementById("novo-recado").value = "";
             }
         });
+
+        // Carregar recados ao iniciar
+        carregarRecados();
     </script>
 </body>
 </html>
