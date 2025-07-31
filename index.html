@@ -18,19 +18,35 @@
         <h1>Colégio Estadual General Carneiro - EFMP</h1>
     </header>
     <div class="botoes">
-        <a href="https://rco.paas.pr.gov.br/" class="botao">Acessar RC Online</a>
-        <a href="https://www.registropontoseed.pr.gov.br/" class="botao">Ponto Eletrônico</a>
-        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/MeusContracheques" class="botao">Contracheque</a>
+        <a href="https://rco.seduc.mt.gov.br/" class="botao" target="_blank">Acessar RC Online</a>
+        <a href="https://ponto.seduc.mt.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
+        <a href="https://contracheque.mt.gov.br/" class="botao" target="_blank">Contracheque</a>
     </div>
     <section>
         <h2>Horários</h2>
-        <a href="horario.jpeg" target="_blank"><img src="horario.jpg" alt="Horário da Escola" width="400"></a>
+        <a href="horario.jpeg" target="_blank"><img src="horario.jpeg" alt="Horário da Escola" width="400"></a>
     </section>
     <section>
         <h2>Recados Importantes</h2>
-        <p>Recado 1: Reunião de pais na próxima sexta-feira.</p>
-        <p>Recado 2: Lembre-se de trazer o material para a aula de ciências.</p>
-        <!-- Ou adicione imagens: <img src="recado1.jpg" alt="Recado 1"> -->
+        <form id="form-recados">
+            <input type="text" id="novo-recado" placeholder="Digite um recado">
+            <button type="submit">Adicionar Recado</button>
+        </form>
+        <ul id="lista-recados">
+            <!-- Recados aparecerão aqui -->
+        </ul>
     </section>
+    <script>
+        document.getElementById("form-recados").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const recado = document.getElementById("novo-recado").value;
+            if (recado) {
+                const li = document.createElement("li");
+                li.textContent = recado;
+                document.getElementById("lista-recados").appendChild(li);
+                document.getElementById("novo-recado").value = "";
+            }
+        });
+    </script>
 </body>
 </html>
