@@ -10,21 +10,33 @@
         .botoes { margin: 20px; }
         .botao { background-color: #28a745; color: white; padding: 10px 20px; margin: 10px; text-decoration: none; border-radius: 5px; }
         section { margin: 20px; }
+        #lista-recados { list-style: none; padding: 0; }
+        #lista-recados li {
+            font-size: 18px; /* Fonte maior */
+            background-color: #ffffff; /* Fundo branco */
+            border: 1px solid #ccc; /* Borda sutil */
+            padding: 15px; /* Espaçamento interno */
+            margin: 10px 0; /* Espaçamento externo */
+            border-radius: 5px; /* Cantos arredondados */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve */
+        }
+        #form-recados input { padding: 8px; font-size: 16px; width: 300px; }
+        #form-recados button { padding: 8px 15px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
     <header>
-        <img src="brasao.jpeg" alt="Brasão da Escola" width="100">
+        <img src="brasao.png" alt="Brasão da Escola" width="100">
         <h1>Colégio Estadual General Carneiro - EFMP</h1>
     </header>
     <div class="botoes">
-        <a href="https://rco.paas.pr.gov.br/" class="botao" target="_blank">Acessar RC Online</a>
-        <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
-        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" class="botao" target="_blank">Contracheque</a>
+        <a href="https://rco.seduc.mt.gov.br/" class="botao" target="_blank">Acessar RC Online</a>
+        <a href="https://ponto.seduc.mt.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
+        <a href="https://contracheque.mt.gov.br/" class="botao" target="_blank">Contracheque</a>
     </div>
     <section>
         <h2>Horários</h2>
-        <a href="horario.jpeg" target="_blank"><img src="horario.jpeg" alt="Horário da Escola" width="400"></a>
+        <a href="horario.jpg" target="_blank"><img src="horario.jpg" alt="Horário da Escola" width="400"></a>
     </section>
     <section>
         <h2>Recados Importantes</h2>
@@ -33,7 +45,7 @@
             <button type="submit">Adicionar Recado</button>
         </form>
         <ul id="lista-recados">
-            <!-- Recados aparecerão aqui -->
+            <!-- Recados aparecem aqui -->
         </ul>
     </section>
     <script>
