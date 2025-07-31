@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colégio Estadual General Carneiro - EFMP</title>
+    <!-- Adicione os scripts do Firebase via CDN -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; }
         header { background-color: #007bff; color: white; padding: 20px; }
@@ -12,19 +15,19 @@
         section { margin: 20px; }
         #lista-recados { list-style: none; padding: 0; }
         #lista-recados li {
-            font-size: 18px; /* Fonte maior */
-            background-color: #ffffff; /* Fundo branco */
-            border: 1px solid #ccc; /* Borda sutil */
-            padding: 15px; /* Espaçamento interno */
-            margin: 10px 0; /* Espaçamento externo */
-            border-radius: 5px; /* Cantos arredondados */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve */
-            display: flex; /* Para alinhar recado e botão */
-            justify-content: space-between; /* Recado à esquerda, botão à direita */
-            align-items: center; /* Centraliza verticalmente */
+            font-size: 18px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         #lista-recados button {
-            background-color: #dc3545; /* Vermelho para remoção */
+            background-color: #dc3545;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -35,13 +38,12 @@
         #form-recados input { padding: 8px; font-size: 16px; width: 300px; }
         #form-recados button { padding: 8px 15px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
 
-        /* Media queries para responsividade em móviles */
         @media (max-width: 600px) {
-            .botoes { display: flex; flex-direction: column; } /* Botões em coluna */
-            img { width: 100%; height: auto; } /* Imagens responsivas */
-            #form-recados input { width: 100%; } /* Input full width */
-            #lista-recados li { flex-direction: column; align-items: flex-start; } /* Recados em coluna no móvil */
-            #lista-recados button { margin-top: 10px; align-self: flex-end; } /* Botão remover abaixo */
+            .botoes { display: flex; flex-direction: column; }
+            img { width: 100%; height: auto; }
+            #form-recados input { width: 100%; }
+            #lista-recados li { flex-direction: column; align-items: flex-start; }
+            #lista-recados button { margin-top: 10px; align-self: flex-end; }
         }
     </style>
 </head>
@@ -51,9 +53,9 @@
         <h1>Colégio Estadual General Carneiro - EFMP</h1>
     </header>
     <div class="botoes">
-        <a href="https://rco.paas.pr.gov.br/" " class="botao" target="_blank">Acessar RC Online</a>
-        <a href="https://www.registropontoseed.pr.gov.br/" " class="botao" target="_blank">Ponto Eletrônico</a>
-        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" " class="botao" target="_blank">Contracheque</a>
+        <a href="://rco.paas.pr.gov.br/" class="botao" target="_blank">Acessar RC Online</a>
+        <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
+        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/">Contracheque</a>
     </div>
     <section>
         <h2>Horários</h2>
@@ -70,46 +72,48 @@
         </ul>
     </section>
     <script>
+        // Inicialize o Firebase com sua configuração (substitua com os valores do seu projeto)
+        const firebaseConfig = {
+            apiKey: "SUA_API_KEY",
+            authDomain: "SEU_PROJETO.firebaseapp.com",
+            databaseURL: "https://SEU_PROJETO.firebaseio.com", // Ou o URL regional
+            projectId: "SEU_PROJETO",
+            storageBucket: "SEU_PROJETO.appspot.com",
+            messagingSenderId: "SEU_SENDER_ID",
+            appId: "SEU_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const recadosRef = database.ref('recados'); // Referência para os recados no banco
+
         const listaRecados = document.getElementById("lista-recados");
 
-        // Função para carregar recados do localStorage
-        function carregarRecados() {
-            const recadosSalvos = JSON.parse(localStorage.getItem("recados")) || [];
-            recadosSalvos.forEach(recado => adicionarRecadoNaLista(recado));
-        }
+        // Carregar e atualizar recados em tempo real
+        recadosRef.on('value', (snapshot) => {
+            listaRecados.innerHTML = ''; // Limpa a lista
+            snapshot.forEach((childSnapshot) => {
+                const key = childSnapshot.key;
+                const recado = childSnapshot.val();
+                const li = document.createElement("li");
+                li.innerHTML = `${recado} <button onclick="removerRecado('${key}')">Remover</button>`;
+                listaRecados.appendChild(li);
+            });
+        });
 
-        // Função para salvar recados no localStorage
-        function salvarRecados() {
-            const recados = Array.from(listaRecados.children).map(li => li.firstChild.textContent.trim());
-            localStorage.setItem("recados", JSON.stringify(recados));
-        }
-
-        // Função para adicionar recado na lista
-        function adicionarRecadoNaLista(recado) {
-            const li = document.createElement("li");
-            li.innerHTML = `${recado} <button onclick="removerRecado(this)">Remover</button>`;
-            listaRecados.appendChild(li);
-        }
-
-        // Função para remover recado
-        function removerRecado(botao) {
-            botao.parentElement.remove();
-            salvarRecados();
-        }
-
-        // Evento de submit do form
+        // Adicionar recado
         document.getElementById("form-recados").addEventListener("submit", function(event) {
             event.preventDefault();
             const recado = document.getElementById("novo-recado").value;
             if (recado) {
-                adicionarRecadoNaLista(recado);
-                salvarRecados();
+                recadosRef.push(recado); // Adiciona ao Firebase
                 document.getElementById("novo-recado").value = "";
             }
         });
 
-        // Carregar recados ao iniciar
-        carregarRecados();
+        // Remover recado
+        function removerRecado(key) {
+            recadosRef.child(key).remove();
+        }
     </script>
 </body>
 </html>
