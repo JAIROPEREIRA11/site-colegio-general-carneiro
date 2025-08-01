@@ -1,67 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colégio Estadual General Carneiro - EFMP</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; }
-        header { background-color: #007bff; color: white; padding: 20px; }
-        .botoes { margin: 20px; }
-        .botao { background-color: #28a745; color: white; padding: 10px 20px; margin: 10px; text-decoration: none; border-radius: 5px; }
-        section { margin: 20px; }
-        #lista-recados { list-style: none; padding: 0; }
-        #lista-recados li {
-            font-size: 18px;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #lista-recados button {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        #form-recados input { padding: 8px; font-size: 16px; width: 300px; }
-        #form-recados button { padding: 8px 15px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colégio Estadual General Carneiro - Recados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+    }
+    .botoes {
+      margin: 20px;
+    }
+    .botao {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    section {
+      margin: 20px;
+    }
+    #lista-recados {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+    #lista-recados li {
+      font-size: 18px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #lista-recados button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #form-recados input {
+      padding: 8px;
+      font-size: 16px;
+      width: 70%;
+      max-width: 300px;
+    }
+    #form-recados button {
+      padding: 8px 15px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .botao {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+      }
+      #lista-recados li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #lista-recados button {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+      #form-recados input {
+        width: 90%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="brasao.jpeg" alt="Brasão da Escola" width="100">
-        <h1>Colégio Estadual General Carneiro - EFMP</h1>
-    </header>
-    <div class="botoes">
-        <a href="https://rco.paas.pr.gov.br/home" class="botao" target="_blank">Acessar RC Online</a>
-        <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
-        <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" class="botao" target="_blank">Contracheque</a>
-    </div>
-    <section>
-        <h2>Horários</h2>
-        <a href="horario.jpeg" target="_blank"><img src="horario.jpeg" alt="Horário da Escola" width="400"></a>
-    </section>
-    <section>
-        <h2>Recados Importantes</h2>
-        <form id="form-recados">
-            <input type="text" id="novo-recado" placeholder="Digite um recado">
-            <button type="submit">Adicionar Recado</button>
-        </form>
-        <ul id="lista-recados">
-            <!-- Recados aparecem aqui -->
-        </ul>
-    </section>
-    <script>
-        // Código do LocalStorage e recados aqui...
-    </script>
+  <header>
+    <img src="brasao.jpeg" alt="Brasão da Escola" width="100" />
+    <h1>Colégio Estadual General Carneiro - EFMP</h1>
+  </header>
+
+  <div class="botoes">
+    <a href="https://rco.paas.pr.gov.br/home" class="botao" target="_blank">Acessar RC Online</a>
+    <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
+    <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" class="botao" target="_blank">Contracheque</a>
+  </div>
+
+  <section>
+    <h2>Horários</h2>
+    <a href="horario.jpeg" target="_blank"><img src="horario.jpeg" alt="Horário da Escola" width="400" /></a>
+  </section>
+
+  <section>
+    <h2>Recados Importantes</h2>
+    <form id="form-recados">
+      <input type="text" id="novo-recado" placeholder="Digite um recado" required />
+      <button type="submit">Adicionar Recado</button>
+    </form>
+    <ul id="lista-recados"></ul>
+  </section>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCsJCsmOc9ZdNT-jC1C4Ecwhpa8D3OtW30",
+      authDomain: "recados-colegio.firebaseapp.com",
+      projectId: "recados-colegio",
+      storageBucket: "recados-colegio.firebasestorage.app",
+      messagingSenderId: "184680883038",
+      appId: "1:184680883038:web:04bf3441212d50d020e5cf",
+      databaseURL: "https://recados-colegio-default-rtdb.firebaseio.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const recadosRef = db.ref("recados");
+
+    const form = document.getElementById("form-recados");
+    const input = document.getElementById("novo-recado");
+    const lista = document.getElementById("lista-recados");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const texto = input.value.trim();
+      if (texto !== "") {
+        const novoRef = recadosRef.push();
+        novoRef.set({ texto });
+        input.value = "";
+      }
+    });
+
+    recadosRef.on("value", function (snapshot) {
+      lista.innerHTML = "";
+      snapshot.forEach(function (childSnapshot) {
+        const key = childSnapshot.key;
+        const texto = childSnapshot.val().texto;
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${texto}</span>
+          <button data-key="${key}">Remover</button>
+        `;
+        lista.appendChild(li);
+      });
+    });
+
+    lista.addEventListener("click", function (e) {
+      if (e.target.tagName === "BUTTON") {
+        const key = e.target.getAttribute("data-key");
+        recadosRef.child(key).remove();
+      }
+    });
+  </script>
 </body>
 </html>
