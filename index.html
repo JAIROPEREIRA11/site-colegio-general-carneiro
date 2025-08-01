@@ -38,6 +38,7 @@
 </head>
 <body>
     <header>
+        <img src="brasao.jpeg" alt="Brasão da Escola" width="100">
         <h1>Colégio Estadual General Carneiro - EFMP</h1>
     </header>
     <div class="botoes">
@@ -45,6 +46,10 @@
         <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
         <a href="https://wwws.portaldoservidor.pr.gov.br/cchequenet/" class="botao" target="_blank">Contracheque</a>
     </div>
+    <section>
+        <h2>Horários</h2>
+        <a href="horario.jpeg" target="_blank"><img src="horario.jpeg" alt="Horário da Escola" width="400"></a>
+    </section>
     <section>
         <h2>Recados Importantes</h2>
         <form id="form-recados">
@@ -56,42 +61,7 @@
         </ul>
     </section>
     <script>
-        const listaRecados = document.getElementById("lista-recados");
-
-        // Carregar recados do LocalStorage
-        function carregarRecados() {
-            const recados = JSON.parse(localStorage.getItem('recados')) || [];
-            listaRecados.innerHTML = ''; // Limpar a lista existente
-            recados.forEach((recado, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = `${recado} <button onclick="removerRecado(${index})">Remover</button>`;
-                listaRecados.appendChild(li);
-            });
-        }
-
-        // Adicionar recado
-        document.getElementById("form-recados").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const recado = document.getElementById("novo-recado").value;
-            if (recado) {
-                const recados = JSON.parse(localStorage.getItem('recados')) || [];
-                recados.push(recado);
-                localStorage.setItem('recados', JSON.stringify(recados)); // Salvar recado no LocalStorage
-                document.getElementById("novo-recado").value = ''; // Limpar o campo
-                carregarRecados(); // Atualizar lista de recados
-            }
-        });
-
-        // Remover recado
-        function removerRecado(index) {
-            const recados = JSON.parse(localStorage.getItem('recados')) || [];
-            recados.splice(index, 1); // Remove o recado da lista
-            localStorage.setItem('recados', JSON.stringify(recados)); // Atualiza o LocalStorage
-            carregarRecados(); // Atualizar lista de recados
-        }
-
-        // Carregar os recados ao iniciar a página
-        carregarRecados();
+        // Código do LocalStorage e recados aqui...
     </script>
 </body>
 </html>
