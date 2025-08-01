@@ -1,0 +1,17 @@
+@media (max-width: 600px) {
+    .botoes {
+        display: flex;
+        flex-direction: column;
+    }
+    #form-recados input {
+        width: 100%; /* Campo de entrada ajustado para tela pequena */
+    }
+    #lista-recados li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #lista-recados button {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+}
