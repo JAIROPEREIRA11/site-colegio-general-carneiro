@@ -7,18 +7,32 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
+      background-color: #e9f0f6;
       margin: 0;
+      padding-bottom: 50px;
+      text-align: center;
     }
+
     header {
       background-color: #007bff;
       color: white;
       padding: 20px;
     }
+
+    header img {
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+
     .botoes {
       margin: 20px;
     }
+
     .botao {
       background-color: #28a745;
       color: white;
@@ -27,16 +41,30 @@
       text-decoration: none;
       border-radius: 5px;
       display: inline-block;
+      font-weight: bold;
     }
+
     section {
-      margin: 20px;
+      margin: 20px auto;
+      padding: 0 15px;
+      max-width: 900px;
     }
+
+    section img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
     #lista-recados {
       list-style: none;
       padding: 0;
       max-width: 600px;
       margin: auto;
     }
+
     #lista-recados li {
       font-size: 18px;
       background-color: #ffffff;
@@ -49,6 +77,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     #lista-recados button {
       background-color: #dc3545;
       color: white;
@@ -58,39 +87,66 @@
       cursor: pointer;
       font-size: 14px;
     }
+
     #form-recados input {
       padding: 8px;
       font-size: 16px;
       width: 70%;
       max-width: 300px;
     }
+
     #form-recados button {
-      padding: 8px 15px;
+      padding: 10px 20px;
       font-size: 16px;
       background-color: #007bff;
       color: white;
+      font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
     }
+
+    #form-recados button:hover {
+      background-color: #0056b3;
+    }
+
     @media (max-width: 600px) {
       .botao {
         display: block;
         width: 90%;
         margin: 10px auto;
       }
+
       #lista-recados li {
         flex-direction: column;
         align-items: flex-start;
       }
+
       #lista-recados button {
         align-self: flex-end;
         margin-top: 10px;
       }
+
       #form-recados input {
         width: 90%;
         margin-bottom: 10px;
       }
+    }
+
+    #mensagem-sucesso {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+      display: none;
+    }
+
+    footer {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -103,43 +159,50 @@
   <div class="botoes">
     <a href="https://rco.paas.pr.gov.br/home" class="botao" target="_blank">Acessar RC Online</a>
     <a href="https://www.registropontoseed.pr.gov.br/" class="botao" target="_blank">Ponto Eletrônico</a>
-    <a href="https://auth-cs.identidadedigital.pr.gov.br/centralautenticacao/login.html?response_type=code&client_id=a8abb4bb284b5b27aa7cb790dc20f80b&redirect_uri=https%3A%2F%2Fwwws.portaldoservidor.pr.gov.br%2Fcchequenet%2FObterToken.ashx&scope=central.seguranca.autenticado&state=1754312587&urlCert=https://certauth-cs.identidadedigital.pr.gov.br&dnsCidadao=https://cidadao-cs.identidadedigital.pr.gov.br/centralcidadao&origemRequisicao=portal&loginPadrao=btnCentral&labelCentral=CPF&modulosDeAutenticacao=btnGovbr,btnCertificado,btnSms,btnCpf,btnEmailToken,btnCentral&urlLogo=https%3A%2F%2Fwwws.portaldoservidor.pr.gov.br%2Fcchequenet%2FContent%2Fimg%2FLoginCentral.png&acesso=2049&tokenFormat=jwt&exibirLinkAutoCadastro=true&exibirLinkRecuperarSenha=true&exibirLinkAutoCadastroCertificado=false&captcha=false" class="botao" target="_blank">Contracheque</a>
+    <a href="https://auth-cs.identidadedigital.pr.gov.br/..." class="botao" target="_blank">Contracheque</a>
   </div>
 
   <section>
     <h2>Horários</h2>
-    <a href="horario escolar/horario manha 1.jpeg" target="_blank"><img src="horario escolar/horario manha 1.jpeg" alt="Horário da Escola" width="400" /></a>
-    <a href="horario escolar/horario manha.jpeg" target="_blank"><img src="horario escolar/horario manha.jpeg" alt="Horário da Escola" width="400" /></a>
-    <a href="horario escolar/horario tarde 1.jpeg" target="_blank"><img src="horario escolar/horario tarde 1.jpeg" alt="Horário da Escola" width="400" /></a>
-    <a href="horario escolar/horario tarde.jpeg" target="_blank"><img src="horario escolar/horario tarde.jpeg" alt="Horário da Escola" width="400" /></a>
+    <a href="horario escolar/horario manha 1.jpeg" target="_blank"><img src="horario escolar/horario manha 1.jpeg" alt="Horário manhã 1º ano" loading="lazy" /></a>
+    <a href="horario escolar/horario manha.jpeg" target="_blank"><img src="horario escolar/horario manha.jpeg" alt="Horário manhã geral" loading="lazy" /></a>
+    <a href="horario escolar/horario tarde 1.jpeg" target="_blank"><img src="horario escolar/horario tarde 1.jpeg" alt="Horário tarde 1º ano" loading="lazy" /></a>
+    <a href="horario escolar/horario tarde.jpeg" target="_blank"><img src="horario escolar/horario tarde.jpeg" alt="Horário tarde geral" loading="lazy" /></a>
   </section>
- <section>
+
+  <section>
     <h2>Horários laboratório de informática Tarde</h2>
-    <a href="tarde/1.png" target="_blank"><img src="tarde/1.png" alt="Horário da Escola" width="400" /></a>
-     <a href="tarde/2.png" target="_blank"><img src="tarde/2.png" alt="Horário da Escola" width="400" /></a>
-      <a href="tarde/3.png" target="_blank"><img src="tarde/3.png" alt="Horário da Escola" width="400" /></a>
-      <h2>Horários laboratório de informática Manhã</h2>
-      <a href="manha/manha1.png" target="_blank"><img src="manha/manha1.png" alt="Horário da Escola" width="400" /></a>
-     <a href="manha/manha2.png" target="_blank"><img src="manha/manha2.png" alt="Horário da Escola" width="400" /></a>
-      <a href="manha/manha3.png" target="_blank"><img src="manha/manha3.png" alt="Horário da Escola" width="400" /></a>
-      <a href="manha/manha4.png" target="_blank"><img src="manha/manha4.png" alt="Horário da Escola" width="400" /></a>
+    <a href="tarde/1.png" target="_blank"><img src="tarde/1.png" alt="Lab Tarde 1" loading="lazy" /></a>
+    <a href="tarde/2.png" target="_blank"><img src="tarde/2.png" alt="Lab Tarde 2" loading="lazy" /></a>
+    <a href="tarde/3.png" target="_blank"><img src="tarde/3.png" alt="Lab Tarde 3" loading="lazy" /></a>
+
+    <h2>Horários laboratório de informática Manhã</h2>
+    <a href="manha/manha1.png" target="_blank"><img src="manha/manha1.png" alt="Lab Manhã 1" loading="lazy" /></a>
+    <a href="manha/manha2.png" target="_blank"><img src="manha/manha2.png" alt="Lab Manhã 2" loading="lazy" /></a>
+    <a href="manha/manha3.png" target="_blank"><img src="manha/manha3.png" alt="Lab Manhã 3" loading="lazy" /></a>
+    <a href="manha/manha4.png" target="_blank"><img src="manha/manha4.png" alt="Lab Manhã 4" loading="lazy" /></a>
   </section>
 
   <section>
     <h2>Recados Importantes</h2>
     <form id="form-recados">
+      <label for="novo-recado" style="display:none;">Novo recado</label>
       <input type="text" id="novo-recado" placeholder="Digite um recado" required />
       <button type="submit">Adicionar Recado</button>
     </form>
+    <p id="mensagem-sucesso">Recado adicionado com sucesso!</p>
     <ul id="lista-recados"></ul>
   </section>
+
+  <footer>
+    © 2025 Colégio Estadual General Carneiro | Desenvolvido para uso interno
+  </footer>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <script>
-    // Configuração do Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCsJCsmOc9ZdNT-jC1C4Ecwhpa8D3OtW30",
       authDomain: "recados-colegio.firebaseapp.com",
@@ -157,13 +220,19 @@
     const form = document.getElementById("form-recados");
     const input = document.getElementById("novo-recado");
     const lista = document.getElementById("lista-recados");
+    const mensagem = document.getElementById("mensagem-sucesso");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       const texto = input.value.trim();
       if (texto !== "") {
         const novoRef = recadosRef.push();
-        novoRef.set({ texto });
+        novoRef.set({ texto }).then(() => {
+          mensagem.style.display = "block";
+          setTimeout(() => {
+            mensagem.style.display = "none";
+          }, 2000);
+        });
         input.value = "";
       }
     });
